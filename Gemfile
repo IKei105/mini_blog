@@ -16,10 +16,11 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "haml-rails", "~> 2.1"
+gem "pg", "~> 1.4"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-gem "haml-rails", "~> 2.0"
 gem "bootstrap", "~> 5.3" # Bootstrap 5.3を指定
 gem "sassc-rails"        # SCSSをコンパイルするために必要
 
