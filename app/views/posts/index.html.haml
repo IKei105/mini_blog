@@ -9,10 +9,11 @@
         = f.text_area :content, class: "post-area__textarea", placeholder: "投稿内容を入力", maxlength: 140
         = f.submit "投稿する", class: "post-area__submit-button btn btn-primary"
 
-    %div.post-area__list-container
+    %div.pagination-container
       %ul.post-area__list
         - @posts.each do |post|
           %li.post-area__item
             %p.post-area__content= post.content
             %span.post-area__date= post.created_at.strftime("(%Y/%m/%d %H:%M)")
-
+      %div.pagination-button-container
+      = will_paginate @posts
