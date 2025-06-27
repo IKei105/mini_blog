@@ -1,0 +1,60 @@
+/* posts.scss */
+.posts-index {
+  margin: 0;
+    .post-area{
+        max-width: 600px;
+        margin: 0 auto;
+        border-left: 2px solid rgb(195, 195, 195);
+        border-right: 2px solid rgb(195, 195, 195);
+    }
+
+    .post-area__title {
+        padding: 10px 5px 0px;
+    }
+
+    .post-area__form-container {
+        max-width: 600px;
+        padding-bottom: 12px;
+    }
+
+    .post-area__textarea {
+        width: 100%;
+        height: 100px;
+        padding-right: 100px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        resize: none;
+        outline: none;
+        box-shadow: none;
+        padding: 5px;
+        border: none;
+    }
+
+    .post-area__submit-button {
+        display: block;
+        margin-left: auto;
+        transform: translateX(-10px);
+    }
+
+    .post-area__list {
+        list-style: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .post-area__item {
+        padding: 5px;
+        border-top: 1px solid rgb(195, 195, 195);
+
+    }
+
+    .post-area__content {
+        margin: 0;
+    }
+
+    .post-area__date {
+        display: block;
+        text-align: right;
+    }
+
+}

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.order(created_at: :desc)
+    @post = Post.new
   end
 
   def create
@@ -9,7 +10,8 @@ class PostsController < ApplicationController
       redirect_to root_path # 成功したらルートへ移動
     else
       flash[:alert] = "投稿に失敗しました"
-      redirect_to root_path
+      @posts = Post.order(created_at: :desc)  # リダイレクトすると入力値が消えるのでrender
+      render :index
     end
   end
 
