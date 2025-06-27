@@ -20,6 +20,8 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 gem "haml-rails", "~> 2.0"
+gem "bootstrap", "~> 5.3" # Bootstrap 5.3を指定
+gem "sassc-rails"        # SCSSをコンパイルするために必要
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
