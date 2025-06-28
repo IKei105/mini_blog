@@ -25,6 +25,7 @@ gem "bootstrap-will_paginate", "~> 1.0.0"
 # gem "bcrypt", "~> 3.1.7"
 gem "bootstrap", "~> 5.3" # Bootstrap 5.3を指定
 gem "sassc-rails"        # SCSSをコンパイルするために必要
+gem "devise"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
