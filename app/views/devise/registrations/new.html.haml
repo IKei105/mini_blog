@@ -17,15 +17,6 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
 
-  = f.fields_for :profile do |pf|
-    .field
-      = pf.label :introduction
-      = pf.text_area :introduction, maxlength: 200
-
-    .field
-      = pf.label :blog_url
-      = pf.text_field :blog_url
-      
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
