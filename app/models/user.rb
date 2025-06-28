@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # emailを必須にしないためのオーバーライド
   def email_required?
     false
   end
@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+
+  has_one :profile, dependent: :destroy
+
+  accepts_nested_attributes_for :profile
 end
