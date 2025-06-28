@@ -50,6 +50,9 @@
 
     .post-area__content {
         margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .post-area__date {

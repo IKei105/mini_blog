@@ -36,7 +36,8 @@ RSpec.describe PostsController, type: :controller do
 
       it "失敗した場合はルートパスにリダイレクトされる" do
         post :create, params: { post: { content: "" } }
-        expect(response).to redirect_to(root_path)
+        expect(response).to render_template(:index)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
