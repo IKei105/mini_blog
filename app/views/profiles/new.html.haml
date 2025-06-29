@@ -1,2 +1,15 @@
-%h1 Profiles#new
-%p Find me in app/views/profiles/new.html.haml
+%h2 新規プロフィール登録
+
+= form_with model: @profile, url: profiles_path do |f|
+  .field
+    = f.label :introduction, "自己紹介"
+    %br/
+    = f.text_area :introduction, maxlength: 200
+
+  .field
+    = f.label :blog_url, "ブログURL"
+    %br/
+    = f.text_field :blog_url
+
+  .actions
+    = f.submit "登録"
