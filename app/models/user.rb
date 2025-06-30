@@ -3,6 +3,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts, dependent: :nullify
+
   # emailを必須にしないためのオーバーライド
   def email_required?
     false
@@ -21,7 +23,6 @@ class User < ApplicationRecord
     }
   
   validate :userid_no_spaces
-
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :blog_url, presence: true, format: { with: /\Ahttps?:\/\/.+\z/, message: "は有効なURLではありません" }
 
