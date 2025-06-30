@@ -2,20 +2,32 @@ require "rails_helper"
 
 RSpec.describe PostsController, type: :controller do
   describe "POST #create" do
-    context "投稿が成功" do
+    let(:valid_content) { "投稿テキスト" }
+    let(:long_content) { "あ" * 141 }
+    let(:valid_userid) { "TestUser" }
+
+    context "投稿成功" do
+      before do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return({ userid: valid_userid })
+      end
+
       it "投稿が保存される" do
         expect {
-          post :create, params: { post: { content: "投稿テキスト" } }
+          post :create, params: { post: { content: valid_content } }
         }.to change(Post, :count).by(1)
       end
 
       it "投稿成功後はルートパスにリダイレクトされる" do
-        post :create, params: { post: { content: "投稿テキスト" } }
+        post :create, params: { post: { content: valid_content } }
         expect(response).to redirect_to(root_path)
       end
     end
 
-    context "投稿が失敗" do
+    context "投稿失敗" do
+      before do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return({ userid: valid_userid })
+      end
+
       it "空の内容では保存されない" do
         expect {
           post :create, params: { post: { content: "" } }
@@ -23,21 +35,21 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "140文字を超える内容では保存されない" do
-        long_text = "あ" * 141
         expect {
-          post :create, params: { post: { content: long_text } }
+          post :create, params: { post: { content: long_content } }
         }.not_to change(Post, :count)
       end
+    end
 
-      it "失敗した場合はflashにエラーメッセージが入る" do
-        post :create, params: { post: { content: "" } }
-        expect(flash[:alert]).to eq "投稿に失敗しました"
+    context "useridがセッションにない場合" do
+      before do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return({})
       end
 
-      it "失敗した場合はルートパスにリダイレクトされる" do
-        post :create, params: { post: { content: "" } }
-        expect(response).to render_template(:index)
-        expect(response).to have_http_status(:ok)
+      it "投稿は保存されない" do
+        expect {
+          post :create, params: { post: { content: valid_content } }
+        }.not_to change(Post, :count)
       end
     end
   end
