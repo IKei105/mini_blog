@@ -12,9 +12,6 @@ class User < ApplicationRecord
     false
   end
 
-  has_one :profile, dependent: :destroy
-  accepts_nested_attributes_for :profile
-
   validates :userid,
     presence: true,
     uniqueness: { case_sensitive: false },
