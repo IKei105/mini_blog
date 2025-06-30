@@ -25,6 +25,9 @@ class User < ApplicationRecord
   
   validate :userid_no_spaces
 
+  validates :introduction, presence: true, length: { maximum: 200 }
+  validates :blog_url, presence: true, format: { with: /\Ahttps?:\/\/.+\z/, message: "は有効なURLではありません" }
+
   private
 
   def userid_no_spaces
