@@ -13,6 +13,25 @@ class User < ApplicationRecord
   end
 
   has_one :profile, dependent: :destroy
-
   accepts_nested_attributes_for :profile
+
+  validates :userid,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    format: {
+      with: /\A[a-zA-Z]+\z/,
+      message: "はアルファベットのみ使用可能です"
+    }
+  
+  validate :userid_no_spaces
+
+  private
+
+  def userid_no_spaces
+    if userid&.match?(/\s/)
+      errors.add(:userid, "にスペースは使えません")
+    end
+  end
+
 end
+
