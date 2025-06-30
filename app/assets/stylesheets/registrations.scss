@@ -1,0 +1,38 @@
+.registrations{
+    margin-top: 50px;
+    margin-bottom: 250px;
+    .main-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .signup-page__title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .signup-page__field {
+        margin-bottom: 20px;
+    }
+
+    .signup-page__field input, textarea {
+        width: 300px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+
+    .signup-page__field input {
+        height: 30px;
+    }
+
+    .signup-page__field textarea {
+        resize: none;
+        height: 150px;
+    }
+
+    .signup-page__actions {
+        text-align: center;
+    }
+    
+}
