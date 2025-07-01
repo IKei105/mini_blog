@@ -1,9 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Posts Pagination", type: :request do
+    let(:user) { create(:user) }
+    
     before do
         31.times do |i|
-        Post.create!(content: "投稿 #{i + 1}")
+        Post.create!(content: "投稿 #{i + 1}", user: user)
         end
     end
 

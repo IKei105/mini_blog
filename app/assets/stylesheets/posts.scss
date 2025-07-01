@@ -44,8 +44,14 @@
     }
 
     .post-area__item {
-        padding: 5px;
+        padding: 8px;
         border-bottom: 1px solid rgb(195, 195, 195);
+    }
+
+    .post-area__username {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
     }
 
     .post-area__content {
