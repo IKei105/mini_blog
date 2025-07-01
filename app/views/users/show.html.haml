@@ -1,0 +1,6 @@
+%body.usershow
+  .main-container
+    %h1.page__userid= "#{@user.userid}さんのページ"
+    %p.page__introduction= @user.introduction
+    %p.page__blog-url
+    %a{ href: @user.blog_url, target: "_blank", rel: "noopener noreferrer" }= @user.blog_url
