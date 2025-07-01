@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # devise
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+       :recoverable, :rememberable, :validatable,
+       authentication_keys: [:userid]
 
   has_many :posts, dependent: :nullify
 
@@ -12,6 +13,22 @@ class User < ApplicationRecord
 
   def will_save_change_to_email?
     false
+  end
+
+  # useridを使った認証をDeviseで正しく機能させる
+  # def self.serialize_from_session(*args)
+  #   key = args[0]
+  #   salt = args[1]
+
+  #   userid = key.is_a?(Array) ? key[0] : key
+  #   record = find_by(userid: userid)
+  #   record if record && record.authenticatable_salt == salt
+  # end
+
+  def self.serialize_from_session(key, salt)
+    userid = key.is_a?(Array) ? key[0] : key
+    record = find_by(userid: userid)
+    record if record && record.authenticatable_salt == salt
   end
 
   validates :userid,
