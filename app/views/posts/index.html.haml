@@ -12,13 +12,14 @@
     %div.pagination-container
       %ul.post-area__list
         - @posts.each do |post|
-          - if user_signed_in? && current_user != post.user
-            - if current_user.follow_users.include?(post.user)
-              = button_to 'フォロー解除', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-outline-danger unfollow-button'
-            - else
-              = button_to 'フォローする', follows_path(follow_user_id: post.user.id), method: :post, data: { turbo: false }, class: 'btn btn-primary follow-button'
           %li.post-area__item
-            %p.post-area__username= post.user&.userid || "削除されたユーザー"
+            %div.post-area__header
+              %p.post-area__username= post.user&.userid || "削除されたユーザー"
+              - if user_signed_in? && current_user != post.user
+                - if current_user.follow_users.include?(post.user)
+                  = button_to 'フォロー中', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-outline-danger unfollow-button'
+                - else
+                  = button_to 'フォロー', follows_path(follow_user_id: post.user.id), method: :post, data: { turbo: false }, class: 'btn btn-primary follow-button'
             %p.post-area__content= post.content
             %span.post-area__date= post.created_at.strftime("(%Y/%m/%d %H:%M)")
       %div.pagination-button-container
