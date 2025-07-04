@@ -25,11 +25,11 @@ class User < ApplicationRecord
   #   record if record && record.authenticatable_salt == salt
   # end
 
-  def self.serialize_from_session(key, salt)
-    userid = key.is_a?(Array) ? key[0] : key
-    record = find_by(userid: userid)
-    record if record && record.authenticatable_salt == salt
-  end
+  # def self.serialize_from_session(key, salt)
+  #   userid = key.is_a?(Array) ? key[0] : key
+  #   record = find_by(userid: userid)
+  #   record if record && record.authenticatable_salt == salt
+  # end
 
   validates :userid,
     presence: true,
