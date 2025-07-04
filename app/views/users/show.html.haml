@@ -1,6 +1,13 @@
+- content_for :title, "プロフィール - Mini Blog"
+
 %body.usershow
   .main-container
-    %h1.page__userid= "#{@user.userid}さんのページ"
-    %p.page__introduction= @user.introduction
-    %p.page__blog-url
-    %a{ href: @user.blog_url, target: "_blank", rel: "noopener noreferrer" }= @user.blog_url
+    %h1.page__title= "プロフィール"
+    .user-id-container
+      %p.page__userid= "ユーザーID : #{@user.userid}"
+    .blog-url-container
+      %p.page__blog-url= "ブログURL"
+      %a{ href: @user.blog_url, target: "_blank", rel: "noopener noreferrer" }= @user.blog_url
+    .user-introduction
+      %p.page__introduction-title= "自己紹介"
+      %p.page__introduction= @user.introduction
