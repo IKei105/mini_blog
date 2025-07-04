@@ -1,6 +1,7 @@
 @import "bootstrap";
 @import "posts";
 @import "registrations";
+@import "usershow";
 
 .flash-alert,
 .post-area {
@@ -19,5 +20,9 @@
   border-bottom: none;
   border-radius: 0;
   text-align: center;
+}
+
+body p, h1{
+  margin: 0;
 }
 
