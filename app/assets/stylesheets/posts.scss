@@ -48,7 +48,13 @@
         border-bottom: 1px solid rgb(195, 195, 195);
     }
 
+    .post-area__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .post-area__username {
+        display: inline-block;
         margin-top: 10px;
         margin-bottom: 5px;
         font-weight: bold;
@@ -64,6 +70,14 @@
     .post-area__date {
         display: block;
         text-align: right;
+    }
+
+    .follow-button, .unfollow-button {
+        width: 110px;
+        display: inline-block;
+        margin-left: auto;
+        transform: translateX(-10px);
+        margin-top: 10px;
     }
 
     .pagination-container {
@@ -91,6 +105,4 @@
         color: rgb(88, 88, 88);
         text-decoration: none;
     }
-
-
 }
