@@ -6,6 +6,14 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :nullify
 
+  # 自分がフォローしているユーザー
+  has_many :follows, foreign_key: :follower_user_id, dependent: :destroy # 中間テーブル
+  has_many :follow_users, through: :follows, source: :follow_user # ユーザーの取得
+
+  # 自分をフォローしてくれるユーザー
+  has_many :reverse_follows, class_name: 'Follow', foreign_key: :follow_user_id, dependent: :destroy # 中間テーブル
+  has_many :follower_users, through: :reverse_follows, source: :follower_user # ユーザーの取得
+
   # emailを必須にしないためのオーバーライド
   def email_required?
     false
@@ -14,22 +22,6 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
-
-  # useridを使った認証をDeviseで正しく機能させる
-  # def self.serialize_from_session(*args)
-  #   key = args[0]
-  #   salt = args[1]
-
-  #   userid = key.is_a?(Array) ? key[0] : key
-  #   record = find_by(userid: userid)
-  #   record if record && record.authenticatable_salt == salt
-  # end
-
-  # def self.serialize_from_session(key, salt)
-  #   userid = key.is_a?(Array) ? key[0] : key
-  #   record = find_by(userid: userid)
-  #   record if record && record.authenticatable_salt == salt
-  # end
 
   validates :userid,
     presence: true,
