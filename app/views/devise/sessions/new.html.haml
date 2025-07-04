@@ -1,0 +1,23 @@
+%body.sessions
+  .main-container
+    %h2.login-page__title ログイン
+
+    .login-page
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-page__form" }) do |f|
+        .login-page__field
+          = f.label :userid, "ユーザーID", for: "user_userid", class: "login-page__label"
+          %br/
+          = f.text_field :userid, autofocus: true, autocomplete: "username", class: "login-page__input"
+
+        .login-page__field
+          = f.label :password, "パスワード", class: "login-page__label"
+          %br/
+          = f.password_field :password, autocomplete: "current-password", class: "login-page__input"
+
+        - if devise_mapping.rememberable?
+          .login-page__field.login-page__remember
+            = f.check_box :remember_me, class: "login-page__checkbox"
+            = f.label :remember_me, "ログイン情報を保存", class: "login-page__label"
+
+        .login-page__actions
+          = f.submit "ログイン", class: "btn btn-primary"
