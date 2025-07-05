@@ -139,4 +139,21 @@
         background-color:rgb(195, 195, 195);
         border-radius: 2px;
     }
+
+    .post-area__overlay {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .post-area__login-message {
+        margin-bottom: 12px;
+    }
+
+    .post-area__login-button {
+        margin-right: 10px;
+    }
+
+    .post-area__signup-button {
+        margin-left: 10px;
+    }
 }

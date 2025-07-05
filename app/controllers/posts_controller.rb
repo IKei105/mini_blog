@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
     @post = current_user.posts.build(post_params) # ログイン中のユーザーの情報を取得して、それを入れ込んでいる
     if @post.save
-      redirect_to request.referer || root_path # 前のページかルートディレクトリに移動
+      redirect_back fallback_location: root_path # 前のページに戻る
     else
       flash[:alert] = "投稿に失敗しました"
       @posts = fetch_posts  # リダイレクトすると入力値が消えるのでrender
