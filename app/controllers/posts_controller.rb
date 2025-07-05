@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
     @post = current_user.posts.build(post_params) # ログイン中のユーザーの情報を取得して、それを入れ込んでいる
     if @post.save
-      redirect_to root_path # 成功したらルートへ移動
+      redirect_to request.referer || root_path # 前のページかルートディレクトリに移動
     else
       flash[:alert] = "投稿に失敗しました"
       @posts = fetch_posts  # リダイレクトすると入力値が消えるのでrender
@@ -39,6 +39,6 @@ class PostsController < ApplicationController
   end
 
   def fetch_posts
-    Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: Post::PER_PAGE)
+    Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: POSTS_PER_PAGE)
   end
 end
