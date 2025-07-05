@@ -68,6 +68,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:introduction]).to include("can't be blank")
     end
 
+    it "is invalid if introduction is too long" do
+      user = User.new(valid_attributes.merge(introduction: "a" * 201))
+      user.valid?
+      expect(user.errors[:introduction]).to include("is too long (maximum is 200 characters)")
+    end
+
     # blog_urlが空の場合は無効（空禁止）であることのテスト
     it "is invalid without blog_url" do
       user = User.new(valid_attributes.merge(blog_url: ""))
