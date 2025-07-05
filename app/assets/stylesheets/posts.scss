@@ -105,4 +105,37 @@
         color: rgb(88, 88, 88);
         text-decoration: none;
     }
+
+    .timeline-tabs {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .timeline-tabs__tab {
+        position: relative;
+        width: 50%;
+        height: 50px;
+        line-height: 50px;
+        display: block;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid rgb(195, 195, 195);
+    }
+    
+    .timeline-tabs__tab:hover {
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+    }
+
+    .timeline-tabs__tab.is-active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 4px;
+        background-color:rgb(195, 195, 195);
+        border-radius: 2px;
+    }
 }

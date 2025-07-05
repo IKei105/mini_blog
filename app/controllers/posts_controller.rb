@@ -27,6 +27,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def following
+    @post = Post.new
+    @posts = Post.includes(:user)
+               .where(user_id: current_user.follow_users.select(:id))  # フォロー中ユーザーだけ
+               .order(created_at: :desc)
+               .paginate(page: params[:page])
+    render :index
+  end
+
   private
 
   def post_params
