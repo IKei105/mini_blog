@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  POSTS_PER_PAGE = 30
+
   def index
-    @posts = Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
+    @posts = fetch_posts
     @post = Post.new
   end
 
@@ -11,18 +13,12 @@ class PostsController < ApplicationController
       return
     end
 
-    # if current_user.nil?
-    #   flash[:alert] = "ログインしてください"
-    #   redirect_to root_path
-    #   return
-    # end
-
     @post = current_user.posts.build(post_params) # ログイン中のユーザーの情報を取得して、それを入れ込んでいる
     if @post.save
       redirect_to root_path # 成功したらルートへ移動
     else
       flash[:alert] = "投稿に失敗しました"
-      @posts = Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: 30)  # リダイレクトすると入力値が消えるのでrender
+      @posts = fetch_posts  # リダイレクトすると入力値が消えるのでrender
       render :index
     end
   end
@@ -40,5 +36,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content) 
+  end
+
+  def fetch_posts
+    Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: Post::PER_PAGE)
   end
 end
