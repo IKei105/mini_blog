@@ -5,7 +5,7 @@
       %h1.post-area__title 投稿一覧
 
     .timeline-tabs
-      = link_to 'すべての投稿', posts_path, class: "timeline-tabs__tab timeline-tabs__tab--all#{' is-active' if current_page?(posts_path)}"
+      = link_to 'すべての投稿', root_path, class: "timeline-tabs__tab timeline-tabs__tab--all#{' is-active' if controller_name == 'posts' && action_name == 'index'}"
       = link_to 'フォロー中', posts_following_path, class: "timeline-tabs__tab timeline-tabs__tab--following#{' is-active' if current_page?(posts_following_path)}"
 
     %div.post-area__form-container
@@ -21,7 +21,7 @@
               %p.post-area__username= post.user&.userid || "削除されたユーザー"
               - if user_signed_in? && current_user != post.user
                 - if current_user.follow_users.include?(post.user)
-                  = button_to 'フォロー中', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-outline-danger unfollow-button'
+                  = button_to 'フォロー中', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-light unfollow-button'
                 - else
                   = button_to 'フォロー', follows_path(follow_user_id: post.user.id), method: :post, data: { turbo: false }, class: 'btn btn-primary follow-button'
             %p.post-area__content= post.content
