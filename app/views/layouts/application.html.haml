@@ -21,13 +21,5 @@
     - if flash[:alert]
       .flash-alert= flash[:alert]
 
-    - if user_signed_in?
-      = button_to "ログアウト", destroy_user_session_path, method: :delete
-
-    - if user_signed_in?
-      %p ログイン中：#{current_user.userid}
-    - else
-      %p 未ログイン
-
-
+    = render 'shared/header'
     = yield

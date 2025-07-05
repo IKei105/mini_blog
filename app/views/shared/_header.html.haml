@@ -1,0 +1,11 @@
+%header.header
+  %div.header__inner
+    %p.header__title= link_to 'Mini Blog', root_path, class: 'header__logo'
+
+    %nav.header__nav
+      - if user_signed_in?
+        = button_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary header__link'
+      - elsif current_page?(new_user_session_path)
+        = link_to '新規登録', new_user_registration_path, class: 'header__link'
+      - elsif current_page?(new_user_registration_path)
+        = link_to 'ログイン', new_user_session_path, class: 'header__link'
