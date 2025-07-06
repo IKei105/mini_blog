@@ -9,7 +9,7 @@
 以下のDocker対応Railsアプリをクローンしてください。  
 ルートディレクトリでこのリポジトリを `src` フォルダとして配置してください。
 
-git clone https://github.com/your-name/mini_blog.git src
+git clone リポジトリ
 
 次に、Dockerコンテナをビルドして起動します：
 
