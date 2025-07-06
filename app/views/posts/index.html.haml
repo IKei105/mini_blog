@@ -35,10 +35,15 @@
                 - else
                   削除されたユーザー
               - if user_signed_in? && current_user != post.user
-                - if current_user.follow_users.include?(post.user)
-                  = button_to 'フォロー中', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-light unfollow-button'
-                - else
-                  = button_to 'フォロー', follows_path(follow_user_id: post.user.id), method: :post, data: { turbo: false }, class: 'btn btn-primary follow-button'
+                %button.btn.follow-toggle-button{
+                  class: @followed_user_ids.include?(post.user.id) ? 'btn-light' : 'btn-primary',
+                  data: {
+                    user_id: post.user.id,
+                    following: @followed_user_ids.include?(post.user.id).to_s
+                  }
+                }
+                  = @followed_user_ids.include?(post.user.id) ? 'フォロー中' : 'フォロー'
+
             %p.post-area__content= post.content
             %span.post-area__date= post.created_at.strftime("(%Y/%m/%d %H:%M)")
       %div.pagination-button-container
