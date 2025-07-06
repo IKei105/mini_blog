@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     it "is invalid without userid" do
       user = User.new(valid_attributes.merge(userid: ""))
       user.valid?
-      expect(user.errors[:userid]).to include("can't be blank")
+      expect(user.errors[:userid]).to include("ユーザーIDを入力してください")
     end
 
     # useridにスペースが含まれるテスト
@@ -44,14 +44,14 @@ RSpec.describe User, type: :model do
       User.create!(valid_attributes)
       user2 = User.new(valid_attributes.merge(userid: "testuser"))
       user2.valid?
-      expect(user2.errors[:userid]).to include("has already been taken")
+      expect(user2.errors[:userid]).to include("すでに使用されています")
     end
 
     # パスワードが短すぎるテスト
     it "is invalid if password is too short" do
       user = User.new(valid_attributes.merge(password: "123", password_confirmation: "123"))
       user.valid?
-      expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
+      expect(user.errors[:password]).to include("パスワードは6文字以上で入力してください")
     end
 
     # User登録時にユーザー数が増加するか確認するテスト
@@ -65,20 +65,20 @@ RSpec.describe User, type: :model do
     it "is invalid without introduction" do
       user = User.new(valid_attributes.merge(introduction: ""))
       user.valid?
-      expect(user.errors[:introduction]).to include("can't be blank")
+      expect(user.errors[:introduction]).to include("自己紹介を入力してください")
     end
 
     it "is invalid if introduction is too long" do
       user = User.new(valid_attributes.merge(introduction: "a" * 201))
       user.valid?
-      expect(user.errors[:introduction]).to include("is too long (maximum is 200 characters)")
+      expect(user.errors[:introduction]).to include("自己紹介は200文字以内で入力してください")
     end
 
     # blog_urlが空の場合は無効（空禁止）であることのテスト
     it "is invalid without blog_url" do
       user = User.new(valid_attributes.merge(blog_url: ""))
       user.valid?
-      expect(user.errors[:blog_url]).to include("can't be blank")
+      expect(user.errors[:blog_url]).to include("ブログURLを入力してください")
     end
 
     # blog_urlに有効なURLを許容するテスト
@@ -94,7 +94,7 @@ RSpec.describe User, type: :model do
     it "is invalid with an invalid blog_url format" do
       user = User.new(valid_attributes.merge(blog_url: "invalid-url"))
       user.valid?
-      expect(user.errors[:blog_url]).to include("は有効なURLではありません")
+      expect(user.errors[:blog_url]).to include("有効なURLを入力してください")
     end
   end
 end

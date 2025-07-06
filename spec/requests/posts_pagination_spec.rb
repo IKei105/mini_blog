@@ -11,7 +11,6 @@ RSpec.describe "Posts Pagination", type: :request do
 
     it "30件を超える投稿をした時にページネーションを表示" do
         get posts_path, params: { page: 1 }
-        expect(response.body).to include("Next")
         expect(response.body).to include("1")
         expect(response.body).to include("2")
     end

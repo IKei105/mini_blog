@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            userid:
+              taken: "すでに使用されています"
+            introduction:
+              too_long: "自己紹介は200文字以内で入力してください"
