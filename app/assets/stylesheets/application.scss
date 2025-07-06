@@ -1,7 +1,7 @@
 @import "bootstrap";
-@import "posts";
-@import "registrations";
-@import "usershow";
+@import "posts/index";
+@import "devise/registrations";
+@import "users/show";
 @import "devise/sessions";
 @import "shared/_header";
 

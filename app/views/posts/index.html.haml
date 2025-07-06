@@ -1,3 +1,5 @@
+- content_for :title, "投稿一覧 - Mini Blog"
+
 %body.posts-index
   %div.post-area
 
@@ -25,7 +27,11 @@
         - @posts.each do |post|
           %li.post-area__item
             %div.post-area__header
-              %p.post-area__username= post.user&.userid || "削除されたユーザー"
+              %p.post-area__username
+                - if post.user.present?
+                  = link_to post.user.userid, user_path(post.user), class: "post-area__username-link"
+                - else
+                  削除されたユーザー
               - if user_signed_in? && current_user != post.user
                 - if current_user.follow_users.include?(post.user)
                   = button_to 'フォロー中', follow_path(post.user), method: :delete, data: { turbo: false }, class: 'btn btn-light unfollow-button'
