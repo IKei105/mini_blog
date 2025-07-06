@@ -1,0 +1,45 @@
+ja:
+  devise:
+    failure:
+      invalid: "ユーザーIDまたはパスワードが間違っています"
+      unauthenticated: "ログインしてください"
+      not_found_in_database: "ユーザーが見つかりません"
+      already_authenticated: "すでにログインしています"
+
+  errors:
+    messages:
+      not_saved:
+        one: "エラー"
+        other: "エラー"
+      invalid: "有効な値を入力してください"
+      confirmation: "確認用の値が一致しません"
+      blank: "入力してください"
+
+  activemodel:
+    models:
+      user:
+        one: "ユーザー"
+        other: "ユーザー"
+
+  activerecord:
+    models:
+      user:
+        one: "ユーザー"
+        other: "ユーザー"
+    errors:
+      models:
+        user:
+          attributes:
+            userid:
+              blank: "ユーザーIDを入力してください"
+            password:
+              blank: "パスワードを入力してください"
+              too_short: "パスワードは%{count}文字以上で入力してください"
+            password_confirmation:
+              confirmation: "確認用パスワードが一致しません"
+              blank: "確認用パスワードを入力してください"
+            blog_url:
+              invalid: "有効なURLを入力してください"
+              blank: "ブログURLを入力してください"
+            introduction:
+              blank: "自己紹介を入力してください"
