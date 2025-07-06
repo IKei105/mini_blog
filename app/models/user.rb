@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :follow_users, through: :follows, source: :follow_user # ユーザーの取得
 
   # 自分をフォローしてくれるユーザー
-  has_many :reverse_follows, class_name: 'Follow', foreign_key: :follow_user_id, dependent: :destroy # 中間テーブル
+  has_many :reverse_follows, class_name: "Follow", foreign_key: :follow_user_id, dependent: :destroy # 中間テーブル
   has_many :follower_users, through: :reverse_follows, source: :follower_user # ユーザーの取得
 
   # emailを必須にしないためのオーバーライド
@@ -30,7 +30,7 @@ class User < ApplicationRecord
       with: /\A[a-zA-Z]+\z/,
       message: "はアルファベットのみ使用可能です"
     }
-  
+
   validate :userid_no_spaces
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :blog_url, presence: true, format: { with: /\Ahttps?:\/\/.+\z/, message: "は有効なURLではありません" }
