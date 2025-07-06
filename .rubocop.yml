@@ -7,7 +7,7 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # Layout/SpaceInsideArrayLiteralBrackets:
 
 Layout/TrailingWhitespace:
-  Enabled: false
+  Enabled: true
 
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
