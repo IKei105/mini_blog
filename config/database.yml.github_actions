@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: mini_blog_test
+  username: postgres
+  password: password
+  host: localhost
