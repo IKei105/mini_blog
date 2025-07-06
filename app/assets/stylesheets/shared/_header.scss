@@ -1,23 +1,34 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    z-index: 65535;
-    .header__inner {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border-bottom:1px solid rgb(195, 195, 195) ;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 65535;
 
-    .header__logo {
-        display: block;
-        width: 90px;
-        line-height: 38px;
-        color: black;
-        text-decoration: none;
-        font-size: 20px;
-    }
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgb(195, 195, 195);
+  }
+
+  .header__logo {
+    display: block;
+    width: 90px;
+    line-height: 38px;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  .header__nav-user {
+    display: flex;
+    align-items: center;
+    gap: 8px; // ボタン間の余白、任意で調整
+  }
+
+  .header__link--mypage {
+    display: inline-block;
+  }
 }
