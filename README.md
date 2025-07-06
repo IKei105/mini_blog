@@ -1,24 +1,68 @@
-# README
+# ミニブログ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+課題として作成したミニブログアプリです。
 
-Things you may want to cover:
+---
 
-* Ruby version
+## 導入方法
 
-* System dependencies
+以下のDocker対応Railsアプリをクローンしてください。  
+ルートディレクトリでこのリポジトリを `src` フォルダとして配置してください。
 
-* Configuration
+git clone リポジトリ
 
-* Database creation
+次に、Dockerコンテナをビルドして起動します：
 
-* Database initialization
+docker-compose build
+docker-compose up -d
 
-* How to run the test suite
+データベースを作成・マイグレーションし、初期データ（テストユーザーと投稿）を投入します：
 
-* Services (job queues, cache servers, search engines, etc.)
+docker-compose exec app rails db:create db:migrate db:seed
 
-* Deployment instructions
+---
 
-* ...
+## アクセス
+
+http://localhost:3000 にアクセスしてください。
+
+---
+
+## ログイン（テストユーザー）
+
+以下のアカウントでログインできます：
+
+- ユーザーID: testone  
+  パスワード: password123
+
+- ユーザーID: testtwo  
+  パスワード: password123
+
+トップページの「ログイン」ボタンを押すと、ログインページへ遷移します。
+
+---
+
+## 機能一覧
+
+- ユーザー登録 / ログイン / ログアウト（Devise使用）
+- 投稿作成・一覧表示
+- 投稿タイムライン（全体 / フォロー中）
+- フォロー / フォロー解除
+- 各種バリデーション、RSpecによるテスト
+
+---
+
+## 使用技術
+
+- Ruby on Rails 8.0
+- PostgreSQL
+- Docker / Docker Compose
+- RSpec / FactoryBot
+- Haml / SCSS
+
+---
+
+## 備考
+
+- 本アプリは開発課題として作成したもので、認証や投稿機能の実装に重点を置いています。
+- スタイルは最低限の装飾のみを行っています。
