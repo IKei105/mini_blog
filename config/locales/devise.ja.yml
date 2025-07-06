@@ -11,7 +11,7 @@ ja:
       not_saved:
         one: "エラー"
         other: "エラー"
-      invalid: "有効な値を入力してください"
+      invalid: "確認用パスワードを入力してください"
       confirmation: "確認用の値が一致しません"
       blank: "入力してください"
 
