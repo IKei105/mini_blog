@@ -4,4 +4,4 @@ test:
   database: mini_blog_test
   username: postgres
   password: password
-  host: localhost
+  host: db
