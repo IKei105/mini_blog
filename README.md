@@ -9,11 +9,12 @@
 以下のDocker対応Railsアプリをクローンしてください。  
 ルートディレクトリでこのリポジトリを `src` フォルダとして配置してください。
 
-git clone リポジトリ
+git clone https://github.com/IKei105/rails_container.git src
 
 次に、Dockerコンテナをビルドして起動します：
 
 docker-compose build
+
 docker-compose up -d
 
 データベースを作成・マイグレーションし、初期データ（テストユーザーと投稿）を投入します：
