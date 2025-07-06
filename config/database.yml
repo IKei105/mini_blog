@@ -14,7 +14,7 @@ development:
 test:
   <<: *default
   database: mini_blog_test
-  username: postgres
+  username: user
   password: password
   host: db
 
