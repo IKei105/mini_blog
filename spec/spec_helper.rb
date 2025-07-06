@@ -14,7 +14,6 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
   # RSpecのための追加文
   config.before(:each, type: :system) do
       Rails.application.try(:reload_routes_unless_loaded)
