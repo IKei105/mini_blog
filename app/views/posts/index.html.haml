@@ -14,7 +14,9 @@
       %div.post-area__form-container
         = form_with model: @post, local: true do |f|
           = f.text_area :content, class: "post-area__textarea", placeholder: "投稿内容を入力", maxlength: 140
-          = f.submit "投稿する", class: "post-area__submit-button btn btn-primary"
+          .post-area__form-bottom
+            %span#char-count.post-area__char-count 0 / 140
+            = f.submit "投稿する", class: "post-area__submit-button btn btn-primary"
     - else
       %div.post-area__overlay
         %p.post-area__login-message 投稿するにはログインしてください

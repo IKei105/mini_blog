@@ -161,4 +161,24 @@
         text-decoration: none;
         color: black;
     }
+
+    .post-area__form-bottom {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 24px;
+        padding: 8px 12px;
+        margin-bottom: 6px;
+    }
+
+
+    .post-area__char-count {
+        font-size: 14px;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .post-area__submit-button {
+        margin: 0;
+    }
 }
