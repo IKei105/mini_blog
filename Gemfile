@@ -73,4 +73,4 @@ group :test do
   gem "factory_bot_rails"
 end
 
-gem "rspec-rails", "~> 8.0", :groups => [:development, :test]
+gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]

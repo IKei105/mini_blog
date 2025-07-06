@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # devise
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable,
-       authentication_keys: [:userid]
+       authentication_keys: [ :userid ]
 
   has_many :posts, dependent: :nullify
 
@@ -42,6 +42,4 @@ class User < ApplicationRecord
       errors.add(:userid, "にスペースは使えません")
     end
   end
-
 end
-

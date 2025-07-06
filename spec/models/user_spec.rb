@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
 
     # blog_urlに有効なURLを許容するテスト
     it "accepts valid blog_url format" do
-      valid_urls = ["http://example.com", "https://example.com"]
+      valid_urls = [ "http://example.com", "https://example.com" ]
       valid_urls.each do |url|
         user = User.new(valid_attributes.merge(blog_url: url))
         expect(user).to be_valid
