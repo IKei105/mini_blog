@@ -35,6 +35,17 @@ class User < ApplicationRecord
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :blog_url, presence: true, format: { with: /\Ahttps?:\/\/.+\z/, message: "は有効なURLではありません" }
 
+  # 大文字小文字混ぜたIDで登録しても、ログイン入力時にそれらを無視することが可能
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if (userid = conditions.delete(:userid))
+      where(conditions).where("LOWER(userid) = ?", userid.downcase).first
+    else
+      where(conditions).first
+    end
+  end
+
+
   private
 
   def userid_no_spaces
