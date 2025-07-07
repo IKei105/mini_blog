@@ -8,4 +8,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :show ]
   resources :follows, only: [ :create, :destroy ]
+
+  namespace :api do
+    resources :follows, only: [:create, :destroy]
+  end
 end
