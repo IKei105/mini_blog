@@ -28,7 +28,7 @@ jobs:
       DATABASE_URL: postgres://postgres:password@db:5432/mini_blog_test
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
