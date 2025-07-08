@@ -1,5 +1,3 @@
-// フォロー処理
-// フォローボタン
 const buttons = document.querySelectorAll(".follow-toggle-button");
 
 buttons.forEach((button) => {
@@ -8,18 +6,15 @@ buttons.forEach((button) => {
     const isFollowing = button.dataset.following === "true";
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
-    // 同じユーザーIDを持つ全てのボタンを取得
     const targetButtons = document.querySelectorAll(`.follow-toggle-button[data-user-id="${userId}"]`);
 
-    // 一括で仮の表示更新
     targetButtons.forEach((btn) => {
-      updateFollowButtonVisual(targetButtons, !isFollowing); // 仮更新
+      updateFollowButtonVisual(targetButtons, !isFollowing);
     });
 
     try {
       let response;
       if (isFollowing) {
-        // フォロー解除（DELETE）
         response = await fetch(`/api/follows/${userId}`, {
           method: "DELETE",
           headers: {
@@ -28,7 +23,6 @@ buttons.forEach((button) => {
           }
         });
       } else {
-        // フォロー（POST）
         response = await fetch("/api/follows", {
           method: "POST",
           headers: {
@@ -45,12 +39,9 @@ buttons.forEach((button) => {
         throw new Error(result.message || "サーバーエラーが発生しました");
       }
 
-      // 成功時は何もしない（すでに表示は更新済み）
-
     } catch (error) {
-      // エラー時、すべて元に戻す
       targetButtons.forEach((btn) => {
-        updateFollowButtonVisual(targetButtons, !isFollowing); // 仮更新
+        updateFollowButtonVisual(targetButtons, !isFollowing);
       });
       alert(error.message || "通信エラーが発生しました");
       console.error(error);

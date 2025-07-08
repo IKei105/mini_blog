@@ -1,4 +1,3 @@
-# ユーザー作成
 user1 = User.create!(
   userid: 'testOne',
   password: 'password123',
@@ -39,7 +38,6 @@ user5 = User.create!(
   blog_url: 'https://example.com/testfive'
 )
 
-# 投稿作成
 [user1, user2, user3, user4, user5].each do |user|
   30.times do |i|
     Post.create!(
