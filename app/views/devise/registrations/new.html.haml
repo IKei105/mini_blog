@@ -9,10 +9,10 @@
 
       .signup-page__account-info
         .signup-page__field
-          = f.label :userid, "ユーザーID", for: "user_userid"
+          = f.label :username, "ユーザー名", for: "user_username"
           %span.signup-page__note (アルファベットのみ)
           %br/
-          = f.text_field :userid, autofocus: true, autocomplete: "username"
+          = f.text_field :username, autofocus: true, autocomplete: "username"
 
         .signup-page__field
           = f.label :password, "パスワード"

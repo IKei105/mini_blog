@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_04_170109) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_08_161541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -32,7 +32,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_04_170109) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "userid", default: "", null: false
+    t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -42,7 +42,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_04_170109) do
     t.string "introduction", limit: 200, null: false
     t.string "blog_url", null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["userid"], name: "index_users_on_userid", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "follows", "users", column: "follow_user_id"

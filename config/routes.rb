@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   resources :posts, only: [ :index, :create ]
   resources :users, only: [ :show ]
+
+  get "posts/following", to: "posts#following"
 end

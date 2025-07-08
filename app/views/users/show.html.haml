@@ -3,8 +3,8 @@
 %body.usershow
   .main-container
     %h1.page__title= "プロフィール"
-    .user-id-container
-      %p.page__userid= "ユーザーID : #{@user.userid}"
+    .username-container
+      %p.page__username= "ユーザーネーム : #{@user.username}"
     .blog-url-container
       %p.page__blog-url= "ブログURL"
       %a{ href: @user.blog_url, target: "_blank", rel: "noopener noreferrer" }= @user.blog_url
