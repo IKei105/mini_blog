@@ -15,12 +15,12 @@ class PostsController < ApplicationController
       return
     end
 
-    @post = current_user.posts.build(post_params) # ログイン中のユーザーの情報を取得して、それを入れ込んでいる
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_back fallback_location: root_path # 前のページに戻る
+      redirect_back fallback_location: root_path
     else
       flash[:alert] = "投稿に失敗しました"
-      @posts = fetch_posts  # リダイレクトすると入力値が消えるのでrender
+      @posts = fetch_posts
       render :index
     end
   end
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def following
     @post = Post.new
     @posts = Post.includes(:user)
-               .where(user_id: current_user.follow_users.select(:id))  # フォロー中ユーザーだけ
+               .where(user_id: current_user.follow_users.select(:id))
                .order(created_at: :desc)
                .paginate(page: params[:page])
     render :index
@@ -45,6 +45,6 @@ class PostsController < ApplicationController
   end
 
   def set_followed_user_ids
-    @followed_user_ids = user_signed_in? ? current_user.follow_users.pluck(:id) : [] # ログインしていたらフォローしているユーザーidを配列に格納して取得する
+    @followed_user_ids = user_signed_in? ? current_user.follow_users.pluck(:id) : []
   end
 end
