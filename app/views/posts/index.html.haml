@@ -31,7 +31,7 @@
             %div.post-area__header
               %p.post-area__username
                 - if post.user.present?
-                  = link_to post.user.userid, user_path(post.user), class: "post-area__username-link"
+                  = link_to post.user.username, user_path(post.user), class: "post-area__username-link"
                 - else
                   削除されたユーザー
               - if user_signed_in? && current_user != post.user

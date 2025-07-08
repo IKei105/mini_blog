@@ -7,9 +7,9 @@
     .login-page
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-page__form" }) do |f|
         .login-page__field
-          = f.label :userid, "ユーザーID", for: "user_userid", class: "login-page__label"
+          = f.label :username, "ユーザーID", for: "user_username", class: "login-page__label"
           %br/
-          = f.text_field :userid, autofocus: true, autocomplete: "username", class: "login-page__input"
+          = f.text_field :username, autofocus: true, autocomplete: "username", class: "login-page__input"
 
         .login-page__field
           = f.label :password, "パスワード", class: "login-page__label"

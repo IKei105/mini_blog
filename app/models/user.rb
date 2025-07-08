@@ -1,20 +1,19 @@
 class User < ApplicationRecord
-  # devise
+
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable,
-       authentication_keys: [ :userid ]
+       authentication_keys: [ :username ]
 
   has_many :posts, dependent: :nullify
 
-  # 自分がフォローしているユーザー
-  has_many :follows, foreign_key: :follower_user_id, dependent: :destroy # 中間テーブル
-  has_many :follow_users, through: :follows, source: :follow_user # ユーザーの取得
 
-  # 自分をフォローしてくれるユーザー
-  has_many :reverse_follows, class_name: "Follow", foreign_key: :follow_user_id, dependent: :destroy # 中間テーブル
-  has_many :follower_users, through: :reverse_follows, source: :follower_user # ユーザーの取得
+  has_many :follows, foreign_key: :follower_user_id, dependent: :destroy
+  has_many :follow_users, through: :follows, source: :follow_user
 
-  # emailを必須にしないためのオーバーライド
+
+  has_many :reverse_follows, class_name: "Follow", foreign_key: :follow_user_id, dependent: :destroy
+  has_many :follower_users, through: :reverse_follows, source: :follower_user
+
   def email_required?
     false
   end
@@ -23,7 +22,7 @@ class User < ApplicationRecord
     false
   end
 
-  validates :userid,
+  validates :username,
     presence: true,
     uniqueness: { case_sensitive: false },
     format: {
@@ -31,26 +30,24 @@ class User < ApplicationRecord
       message: "はアルファベットのみ使用可能です"
     }
 
-  validate :userid_no_spaces
+  validate :username_no_spaces
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :blog_url, presence: true, format: { with: /\Ahttps?:\/\/.+\z/, message: "は有効なURLではありません" }
 
-  # 大文字小文字混ぜたIDで登録しても、ログイン入力時にそれらを無視することが可能
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
-    if (userid = conditions.delete(:userid))
-      where(conditions).where("LOWER(userid) = ?", userid.downcase).first
+    if (username = conditions.delete(:username))
+      where(conditions).where("LOWER(username) = ?", username.downcase).first
     else
       where(conditions).first
     end
   end
 
-
   private
 
-  def userid_no_spaces
-    if userid&.match?(/\s/)
-      errors.add(:userid, "にスペースは使えません")
+  def username_no_spaces
+    if username&.match?(/\s/)
+      errors.add(:username, "にスペースは使えません")
     end
   end
 end
