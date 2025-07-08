@@ -1,18 +1,17 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 8.0.2"
+gem "rails"
 gem "propshaft"
-gem "sqlite3", ">= 2.1"
-gem "puma", ">= 5.0"
+gem "puma"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-gem "haml-rails", "~> 2.1"
-gem "pg", "~> 1.4"
-gem "will_paginate", "~> 3.3.1"
-gem "bootstrap-will_paginate", "~> 1.0.0"
-gem "bootstrap", "~> 5.3"
+gem "haml-rails"
+gem "pg"
+gem "will_paginate"
+gem "bootstrap-will_paginate"
+gem "bootstrap"
 gem "sassc-rails"
 gem "devise"
 gem "devise-i18n"
@@ -28,6 +27,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
+  gem "rspec-rails"
 end
 
 group :development do
@@ -39,5 +39,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rails-controller-testing"
 end
-
-gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]
