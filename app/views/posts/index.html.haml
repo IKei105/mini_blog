@@ -36,13 +36,13 @@
                   削除されたユーザー
               - if user_signed_in? && current_user != post.user
                 %button.btn.follow-toggle-button{
-                  class: @followed_user_ids.include?(post.user.id) ? 'btn-light' : 'btn-primary',
+                  class: @following_user_ids.include?(post.user.id) ? 'btn-light' : 'btn-primary',
                   data: {
                     user_id: post.user.id,
-                    following: @followed_user_ids.include?(post.user.id).to_s
+                    following: @following_user_ids.include?(post.user.id).to_s
                   }
                 }
-                  = @followed_user_ids.include?(post.user.id) ? 'フォロー中' : 'フォロー'
+                  = @following_user_ids.include?(post.user.id) ? 'フォロー中' : 'フォロー'
 
             %p.post-area__content= post.content
             %span.post-area__date= post.created_at.strftime("(%Y/%m/%d %H:%M)")
