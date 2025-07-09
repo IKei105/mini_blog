@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   POSTS_PER_PAGE = 30
 
-  before_action :set_followed_user_ids, only: [:index, :following]
+  before_action :set_following_user_ids, only: [:index, :following]
 
   def index
     @posts = fetch_posts
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def following
     @post = Post.new
     @posts = Post.includes(:user)
-               .where(user_id: current_user.follow_users.select(:id))
+               .where(user_id: current_user.followings.select(:id))
                .order(created_at: :desc)
                .paginate(page: params[:page])
     render :index
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: POSTS_PER_PAGE)
   end
 
-  def set_followed_user_ids
-    @followed_user_ids = user_signed_in? ? current_user.follow_users.pluck(:id) : []
+  def set_following_user_ids
+    @following_user_ids = user_signed_in? ? current_user.followings.pluck(:id) : []
   end
 end

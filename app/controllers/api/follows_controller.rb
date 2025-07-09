@@ -1,21 +1,27 @@
 class Api::FollowsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:create, :destroy]
 
   def create
-    follow_user = User.find(params[:follow_user_id]) # bodyから取得
-
-    current_user.follow_users << follow_user unless current_user.follow_users.include?(follow_user)
-    render json: { status: 'ok' }
-  rescue => e
-    render json: { status: 'error', message: 'エラーが発生しました' }, status: :unprocessable_entity
+    if current_user.followings.exists?(@user.id)
+      render json: { status: 'ok', message: 'すでにフォローしています' }
+    else
+      current_user.followings << @user
+      render json: { status: 'ok' }
+    end
   end
 
   def destroy
-    follow_user = User.find(params[:id])
-
-    current_user.follow_users.destroy(follow_user)
+    current_user.followings.destroy(@user)
     render json: { status: 'ok' }
-  rescue => e
-    render json: { status: 'error', message: 'エラーが発生しました' }, status: :unprocessable_entity
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(id: params[:follow_user_id] || params[:id])
+    unless @user
+      render json: { status: 'error', message: 'ユーザーが見つかりません' }, status: :not_found
+    end
   end
 end
