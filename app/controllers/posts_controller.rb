@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   POSTS_PER_PAGE = 30
 
-  before_action :set_following_user_ids, only: [:index, :following]
+  before_action :set_following_user_ids, only: [:index, :create, :following]
 
   def index
     @posts = fetch_posts
