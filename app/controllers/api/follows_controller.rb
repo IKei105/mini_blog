@@ -6,10 +6,11 @@ class Api::FollowsController < ApplicationController
     if current_user.followings.exists?(@user.id)
       render json: { status: 'ok', message: 'すでにフォローしています' }
     else
-      current_user.followings << @user
+      Follow.create!(follower: current_user, followed: @user)
       render json: { status: 'ok' }
     end
   end
+
 
   def destroy
     current_user.followings.destroy(@user)
@@ -22,6 +23,7 @@ class Api::FollowsController < ApplicationController
     @user = User.find_by(id: params[:follow_user_id] || params[:id])
     unless @user
       render json: { status: 'error', message: 'ユーザーが見つかりません' }, status: :not_found
+      return
     end
   end
 end
