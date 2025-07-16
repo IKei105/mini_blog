@@ -109,7 +109,7 @@ GEM
       rails-i18n
     diff-lcs (1.6.2)
     drb (2.2.3)
-    erb (5.0.1)
+    erb (5.0.2)
     erubi (1.13.1)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-arm64-darwin)
@@ -127,7 +127,7 @@ GEM
       railties (>= 5.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -168,11 +168,10 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    propshaft (1.1.0)
+    propshaft (1.2.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-      railties (>= 7.0.0)
     psych (5.2.6)
       date
       stringio
@@ -225,7 +224,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.3.0)
-    rdoc (6.14.1)
+    rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
